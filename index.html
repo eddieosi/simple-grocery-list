@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title></title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="images/favicon.png" />
+    <style>
+      body {
+        background: #20262E;
+        padding: 20px;
+        font-family: Helvetica;
+      }
+      .big-area{
+        width: 100%;
+        height: 250px;
+      }
+      #list-form {
+        background: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        font-size: 25px;
+        text-align: center;
+        transition: all 0.2s;
+        margin: 0 auto;
+        width: 600px;
+      }
+
+      button {
+        background: #0084ff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 14px;
+        font-size: 15px;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+  
+    <div id="list-form">
+      <textarea id="list-paste" class="big-area"></textarea>
+      <button>Zeige Liste</button>
+    </div>
+    <div id="list-print"></div>
+
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+// find elements
+var button = $("button")
+
+// handle click and add class
+button.on("click", function(){
+  parseField();
+  toggleForm();
+  
+})
+
+function parseField(){
+	var text = $("#list-paste").val();
+  var splits = text.split("\n");
+  var dataList = [];
+  $.each(splits, function(split){
+  	if(this.startsWith("[x]")){
+    	return;
+    }
+    dataList.push(this.replace("[ ] ", ""));
+  });
+  
+  return renderGroceries(dataList);
+}
+
+function toggleForm(){
+	$("#list-form").is("hidden")?$("#list-form").show():$("#list-form").hide();
+}
+
+function renderGroceries(dataList){
+	
+}
+
+</script>
